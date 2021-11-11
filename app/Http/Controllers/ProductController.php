@@ -2,7 +2,7 @@
   
 namespace App\Http\Controllers;
    
-use App\Models\Product;
+use App\Models\Todo;
 use Illuminate\Http\Request;
   
 class ProductController extends Controller
@@ -10,12 +10,20 @@ class ProductController extends Controller
    
     public function index()
     {
-        $products = Product::latest()->paginate(10);
+        $table = Todo::latest()->paginate(5);
     
-        return view('products.index',compact('products'))
+        return view('products.index',compact('table'))
             ->with('id');
     }
      
+
+    //   public function indexx()
+    // {
+    //     $completes = Complete::latest()->paginate(5);
+    
+    //     return view('products.index',compact('completes'))
+    //         ->with('id');
+    // }
     
     // public function create()
     // {
@@ -27,15 +35,28 @@ class ProductController extends Controller
     {
         $request->validate([
             'task' => 'required',
-            'status'=>' required'
+            
              
              
         ]);
     
-        Product::create($request->all());
+        Todo::create($request->all());
      
         return redirect()->route('products.index')
-                        ->with('success','Product created successfully.');
+                        ->with('success','  Task created successfully.');
+    }
+
+    public function complete(Request $request)
+    {
+        $request->validate([
+            'task' => 'required',             
+             
+        ]);
+    
+        complete::create($request->all());
+     
+        return redirect()->route('products.index')
+                        ->with('success','Task created successfully.');
     }
      
     
@@ -45,32 +66,31 @@ class ProductController extends Controller
     // } 
      
     
-    public function edit(Product $product)
+    public function edit(Todo $product)
     {
         return view('products.edit',compact('product'));
     }
     
    
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Todo $product)
     {
         $request->validate([
             'task' => 'required',
-            'status'=>' required'
             
         ]);
     
         $product->update($request->all());
     
         return redirect()->route('products.index')
-                        ->with('success','Product updated successfully');
+                        ->with('success','Task updated successfully');
     }
     
     
-    public function destroy(Product $product)
+    public function destroy(Todo $product)
     {
         $product->delete();
     
         return redirect()->route('products.index')
-                        ->with('success','Product deleted successfully');
+                        ->with('success','Task deleted Successfully!!!');
     }
 }

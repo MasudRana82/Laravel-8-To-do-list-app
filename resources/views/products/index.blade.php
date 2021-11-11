@@ -14,20 +14,16 @@
     @csrf
   
   
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Task:</strong>
-                <input type="text" name="task" class="form-control" placeholder="Task">
-            </div>
-              <div class="form-group">
-                <strong>status:</strong>
-                <input type="text" name="status" class="form-control" placeholder="0 or 1">
-            </div>
-        </div>
+      
+
+
+
+ <div class="input-group mb-3">
+   <input type="text" name="task" class="form-control" placeholder="Task">
+    <button class="btn btn-success" type="submit">ADD</button> 
+  </div>
         
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Add</button>
-        </div>
+        
     
    
 </form>
@@ -36,45 +32,57 @@
     </div>
    
     @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
+<div class="alert alert-success alert-dismissible">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <strong> <p>{{ $message }}</p></strong> 
+
+       </div> 
     @endif
     <div class="container">
    
     <table class="table table-bordered">
-        <tr  class="table-active">
+        <tr  class="table-warning">
             <th>Task</th>
            
-            <th width="280px">Action</th>
+            <th width="480px">Action</th>
         </tr>
-        @foreach ($products as $product)
+        @foreach ($table as $show)
         <tr>
             
-            <del><td class="table-success"> {{ $product->task }}</td>
+            <del><td class="table-danger"> {{ $show->task }}</td>
            
         
             <td>
-                <form action="{{ route('products.destroy',$product->id) }}" method="POST">
+                <form action="{{ route('products.destroy',$show->id) }}" method="POST">
    
-                    <a style='font-size:20px;color:#2196F3;' href="{{ route('products.show',$product->id) }}">Complete</a>
+                  
+                     <a  href="{{ route('products.store',$show->id) }}" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-ok"></span> </a>
+
     
-                    <a class=" fas fa-edit"  style='font-size:30px;color:#2196F3;' href="{{ route('products.edit',$product->id) }}"></a>
+                    
+                     <a href="{{ route('products.edit',$show->id) }}" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-pencil"></span> </a>
    
                     @csrf
                     @method('DELETE')
-      
-                    <button type="submit" class="fas fa-trash"  style='font-size:30px;color:red;'></button>
+                    <button type="submit" class="btn btn-danger-lg"><span class="glyphicon glyphicon-trash "></span> Delete</button>
+                    
                 </form>
             </td>
         </tr>
         @endforeach
     </table>
   
-    {!! $products->links() !!}
+    {!! $table->links() !!}
 
     
 </div>
+
+
+
+
+
 
 
       

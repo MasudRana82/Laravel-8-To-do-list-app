@@ -33,10 +33,7 @@
                     <strong>Task:</strong>
                     <input type="text" name="name" value="{{ $product->task }}" class="form-control" placeholder="Name">
                 </div>
-                 <div class="form-group">
-                <strong>status:</strong>
-                <input type="text" name="status" class="form-control" placeholder="0">
-            </div>
+              
             </div>
               
            
