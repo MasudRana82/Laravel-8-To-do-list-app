@@ -31,7 +31,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Task:</strong>
-                    <input type="text" name="name" value="{{ $product->task }}" class="form-control" placeholder="Name">
+                    <input type="text" name="task" value="{{ $product->task }}" class="form-control" placeholder="Name">
                 </div>
               
             </div>
