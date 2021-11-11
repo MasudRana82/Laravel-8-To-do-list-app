@@ -46,18 +46,7 @@ class ProductController extends Controller
                         ->with('success','  Task created successfully.');
     }
 
-    public function complete(Request $request)
-    {
-        $request->validate([
-            'task' => 'required',             
-             
-        ]);
-    
-        complete::create($request->all());
-     
-        return redirect()->route('products.index')
-                        ->with('success','Task created successfully.');
-    }
+   
      
     
     // public function show(Product $product)
@@ -66,10 +55,10 @@ class ProductController extends Controller
     // } 
      
     
-    public function edit(Todo $product)
-    {
-        return view('products.edit',compact('product'));
-    }
+    // public function edit(Todo $product)
+    // {
+    //     return view('products.edit',compact('product'));
+    // }
     
    
     public function update(Request $request, Todo $product)

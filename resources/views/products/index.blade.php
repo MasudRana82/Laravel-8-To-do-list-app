@@ -9,35 +9,39 @@
             </div>
               
 
-   
-<form action="{{ route('products.store') }}" method="POST">
-    @csrf
-  
-  
-      
 
-
-
- <div class="input-group mb-3">
-   <input type="text" name="task" class="form-control" placeholder="Task">
-    <button class="btn btn-success" type="submit">ADD</button> 
-  </div>
-        
-        
-    
-   
-</form>
 
         </div>
     </div>
    
-    @if ($message = Session::get('success'))
+   <!--  @if ($message = Session::get('success'))
 <div class="alert alert-success alert-dismissible">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     <strong> <p>{{ $message }}</p></strong> 
-
        </div> 
-    @endif
+    @endif -->
+
+   
+<form action="{{ route('products.store') }}" method="POST">
+    @csrf
+  
+ 
+ <div class="container">
+
+   <input type="text" name="task" class="form-control" placeholder="Add your Task here!!">
+   <table  class="table table-bordered">
+       <td>
+           <button class="btn btn-success" type="submit"  >Add</button>      
+       </td>
+   </table>
+  </div>
+    
+   <hr>
+   <hr>     
+    
+   
+</form>
+
     <div class="container">
    
     <table class="table table-bordered">
@@ -55,18 +59,18 @@
             <td>
                 <form action="{{ route('products.destroy',$show->id) }}" method="POST">
    
-                  
+                  <!-- 
                      <a  href="{{ route('products.store',$show->id) }}" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-ok"></span> </a>
+          <span class="glyphicon glyphicon-ok">view</span> </a> -->
 
     
                     
                      <a href="{{ route('products.edit',$show->id) }}" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-pencil"></span> </a>
+          <span class="glyphicon glyphicon-pencil"></span> Edit</a>
    
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger-lg"><span class="glyphicon glyphicon-trash "></span> Delete</button>
+                    <button type="submit" class="btn btn-danger-lg"><span class="glyphicon glyphicon-trash "></span> Complete</button>
                     
                 </form>
             </td>
